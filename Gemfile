@@ -4,6 +4,7 @@ ruby '2.2.0'
 gem 'rails', '4.2.0'
 gem 'pg'
 gem 'unicorn'
+gem 'newrelic_rpm'
 
 gem 'sass'
 gem 'sass-rails'
