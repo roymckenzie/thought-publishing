@@ -5,7 +5,8 @@ gem 'rails', '4.2.0'
 gem 'pg'
 gem 'unicorn'
 
-gem 'sass-rails',       '~> 4.0.3'
+gem 'sass'
+gem 'sass-rails'
 gem 'foundation-rails'
 
 gem 'uglifier',         '>= 1.3.0'
