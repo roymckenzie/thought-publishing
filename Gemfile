@@ -12,6 +12,9 @@ gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
 
 gem 'opengraph_parser'
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'devise'
 
 gem 'uglifier',         '>= 1.3.0'
 gem 'coffee-rails',     '~> 4.0.0'
@@ -21,5 +24,6 @@ gem 'jbuilder',         '~> 2.0'
 gem 'sdoc',             '~> 0.4.0', group: :doc
 
 gem 'spring',           group: :development
+gem 'dotenv-rails',     groups: [:development, :test]
 
 gem 'rails_12factor',   group: :production
