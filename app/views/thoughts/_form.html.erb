@@ -1,0 +1,17 @@
+<%= form_for(@thought) do |f| %>
+  <%= f.text_field :title, placeholder: 'Title' %>
+  <%= f.text_area :body, placeholder: 'Explain your thoughts' %>
+  <%= f.file_field :image %>
+  <%= f.label :published, 'Published' %>
+  <div class="panel">
+  <%= f.label :published, 'Date' %>
+  <div class="row">
+    <%= f.date_select :published, use_separators: { wrapper_select_tag: { html_tag: :div, class_prefix: 'small-4 columns published_' }} %>
+  </div>
+  <%= f.label :published, 'Time' %>
+  <div class="row">
+    <%= f.time_select :published, :ignore_date => true, time_separator: '', use_separators: { wrapper_select_tag: { html_tag: :div, class_prefix: 'small-6 columns published_' }} %>
+  </div>
+</div>
+  <%= f.submit class: "button right" %>
+<% end %>

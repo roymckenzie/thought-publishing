@@ -14,7 +14,18 @@
 
   <body>
 
-    <%= yield %>
+  <div class="row">
+    <div class="small-12 columns">
+      <% flash.each do |name, msg| %>
+        <div data-alert class="alert-box <%= name%>">
+          <%= msg %>
+          <a href="#" class="close">&times;</a>
+        </div>
+      <% end %>
+      <%= user_signed_in? ? link_to("Sign out", destroy_user_session_path, method: :delete, class: "right") : "" %>
+      <%= yield %>
+    </div>
+  </div>
 
   </body>
 </html>

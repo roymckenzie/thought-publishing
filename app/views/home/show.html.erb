@@ -1,14 +1,25 @@
-<% content_for title = "home" %>
-<div class="row">
-  <div class="small-12 columns">
-    <h2>Where to find me</h2>
-    <ul class="inline-list find-me-links">
-      <li><a href="https://github.com/roymckenzie" title="Github" target="_blank"><i class="fi-social-github"></i></a></li>
-      <li><a href="https://twitter.com/roymckenzie" title="Twitter" target="_blank"><i class="fi-social-twitter"></i></a></li>
-      <li><a href="https://instagram.com/roymckenzie" title="Instagram" target="_blank"><i class="fi-social-instagram"></i></a></li>
-    </ul>
-
-    <h2>What I am doing</h2>
-    <p>I am working full-time for a software development company named <a href="http://propellerlabs.co" title="Propeller Labs" target="_blank">Propeller Labs</a>.</p>
-  </div>
-</div>
+<h2>Where to find me</h2>
+<ul class="inline-list find-me-links">
+  <li><a href="https://github.com/roymckenzie" title="Github" target="_blank"><i class="fi-social-github"></i></a></li>
+  <li><a href="https://twitter.com/roymckenzie" title="Twitter" target="_blank"><i class="fi-social-twitter"></i></a></li>
+  <li><a href="https://instagram.com/roymckenzie" title="Instagram" target="_blank"><i class="fi-social-instagram"></i></a></li>
+</ul>
+<hr>
+<h2>What I am doing</h2>
+<p>I am working full-time for a software development company named <a href="http://propellerlabs.co" title="Propeller Labs" target="_blank">Propeller Labs</a>.</p>
+<% if @thoughts.any? %>
+  <hr>
+  <h2>What I am thinking</h2>
+  <ul class="small-block-grid-3">
+    <% @thoughts.each do |thought| %>
+      <li>
+        <%= image_tag(thought.image.url) %>
+        <div class="panel clearfix">
+          <h4><%= thought.title %></h4>
+          <p><%= truncate(thought.body, :length => 100, :separator => ' ') %></p>
+          <%= link_to("Read more", thought, class: 'right') %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

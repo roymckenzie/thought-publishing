@@ -11,6 +11,8 @@ gem 'sass-rails'
 gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
 
+gem 'date_select_separator'
+
 gem 'opengraph_parser'
 gem 'paperclip'
 gem 'aws-sdk'
