@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (6.0.0)
     builder (3.2.2)
     coffee-rails (4.0.1)
@@ -77,6 +78,9 @@ GEM
     newrelic_rpm (3.7.3.204)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
+    opengraph_parser (0.2.3)
+      addressable
+      nokogiri
     pg (0.18.1)
     rack (1.6.0)
     rack-test (0.6.3)
@@ -157,6 +161,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   newrelic_rpm
+  opengraph_parser
   pg
   rails (= 4.2.0)
   rails_12factor
