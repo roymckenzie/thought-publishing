@@ -1,8 +1,8 @@
 <div class="row">
   <div class="small-12 medium-6 medium-centered columns">
     <%= user_signed_in? ? link_to("Edit", edit_thought_path(@thought), class: "right") : "" %>
+    <%= @thought.image? ? image_tag(@thought.image.url) : "" %>
     <h2><%= @thought.title%></h2>
     <%= simple_format(@thought.body) %>
-    <%= image_tag(@thought.image.url(:thumb)) %>
   </div>
 </div>
