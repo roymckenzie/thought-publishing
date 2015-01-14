@@ -1,6 +1,6 @@
 <% if @thoughts.any? %>
   <hr>
-  <ul class="medium-block-grid-3 small-block-grid-1 thoughts">
+  <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1 thoughts">
     <% @thoughts.each do |thought| %>
       <li class="thought">
         <%= thought.image? ? link_to(image_tag(thought.image.url(:medium)), thought) : "" %>
