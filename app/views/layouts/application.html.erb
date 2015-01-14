@@ -26,6 +26,7 @@
           <li class="divider"></li>
           <li class="social"><a href="https://instagram.com/roymckenzie" title="Instagram" target="_blank"><i class="fi-social-instagram"></i></a></li>
           <% if user_signed_in? %>
+          <li class="divider"></li>
           <li class="has-dropdown">
             <a href="#">Menu</a>
             <ul class="dropdown">
@@ -38,6 +39,7 @@
               <li><%= link_to("Sign out", destroy_user_session_path, method: :delete) %></li>
             </ul>
           </li>
+          <li class="divider"></li>
           <% end %>
         </ul>
       </section>

@@ -63,6 +63,7 @@ class ThoughtsController < ApplicationController
   def destroy
     @thought.destroy
     flash[:success] = "Thought was successfully destroyed."
+    redirect_to thoughts_path
   end
 
   private

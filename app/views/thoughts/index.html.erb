@@ -1,12 +1,14 @@
-<h2>Thoughts <%= link_to("<i class=\"fi-plus\"></i> Add thought".html_safe, new_thought_path, class: 'button tiny success right add-thought') %></h2>
+<h2>Thoughts <%= link_to("<i class=\"fi-plus\"></i>&nbsp;&nbsp;Add thought".html_safe, new_thought_path, class: 'button tiny success right add-thought') %></h2>
 <hr>
 <table class="thoughts-table-index">
   <thead>
     <tr>
       <th>Title</th>
       <th>Body</th>
-      <th>Published</th>
+      <th width="150">Published</th>
       <th width="100"></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -14,8 +16,10 @@
     <tr>
       <td><%= link_to(thought.title, edit_thought_path(thought)) %></td>
       <td><%= truncate(thought.body, :length => 100, :separator => ' ') %></td>
-      <td><%= thought.published? ? time_ago_in_words(thought.published) : "Unpublished" %></td>
-      <td><%= thought.published? ? link_to("Unpublish", unpublish_thought_path(thought), data: { :confirm => "Are you sure?" }, method: :patch, class: 'button tiny secondary expand') : link_to("Publish", publish_thought_path(thought), data: { :confirm => "Are you sure?" }, method: :patch, class: 'button tiny default expand') %></td>
+      <td><%= published_status(thought.published) %></td>
+      <td><%= publish_button(thought) %></td>
+      <td><%= link_to("<i class=\"fi-trash\"></i>".html_safe, thought_path(thought), data: { :confirm => "Are you sure?" }, method: :delete, class: 'button tiny alert') %></td>
+      <td><%= link_to("<i class=\"fi-eye\"></i>".html_safe, thought_path(thought), class: 'button tiny') %></td>
     </tr>
   <% end %>
   </tbody>

@@ -1,9 +1,16 @@
 <div class="row">
-  <div class="small-12 medium-8 medium-centered columns">
+  <div class="small-12 medium-8 medium-offset-2 columns">
     <hr>
-    <%= user_signed_in? ? link_to("Edit", edit_thought_path(@thought), class: "right") : "" %>
     <%= @thought.image? ? image_tag(@thought.image.url(:large)) : "" %>
+    <small class="right image-attribution"><%= @thought.image_attribution %></small>
     <h2><%= @thought.title%></h2>
+    <p><small><time class="thought-published"><%= time_ago_in_words(@thought.published) %> ago</time></small></p>
     <%= simple_format(@thought.body) %>
   </div>
+  <% if user_signed_in? %>
+  <div class="small-12 medium-2 columns">
+    <hr>
+    <%= link_to("Edit thought", edit_thought_path(@thought), class: "button expand small") %>
+  </div>
+  <% end %>
 </div>

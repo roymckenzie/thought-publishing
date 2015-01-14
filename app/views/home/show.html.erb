@@ -3,7 +3,7 @@
   <ul class="medium-block-grid-3 small-block-grid-1 thoughts">
     <% @thoughts.each do |thought| %>
       <li>
-        <%= thought.image? ? image_tag(thought.image.url(:medium)) : "" %>
+        <%= thought.image? ? link_to(image_tag(thought.image.url(:medium)), thought) : "" %>
         <div class="panel clearfix">
           <h4><%= thought.title %></h4>
           <p><%= truncate(thought.body, :length => 100, :separator => ' ') %></p>
