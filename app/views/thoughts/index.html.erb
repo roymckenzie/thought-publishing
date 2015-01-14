@@ -1,2 +1,22 @@
-<h1>Thoughts#index</h1>
-<p>Find me in app/views/thoughts/index.html.erb</p>
+<h2>Thoughts <%= link_to("<i class=\"fi-plus\"></i> Add thought".html_safe, new_thought_path, class: 'button tiny success right add-thought') %></h2>
+<hr>
+<table class="thoughts-table-index">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Published</th>
+      <th width="100"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @thoughts.each do |thought| %>
+    <tr>
+      <td><%= link_to(thought.title, edit_thought_path(thought)) %></td>
+      <td><%= truncate(thought.body, :length => 100, :separator => ' ') %></td>
+      <td><%= thought.published? ? time_ago_in_words(thought.published) : "Unpublished" %></td>
+      <td><%= thought.published? ? link_to("Unpublish", unpublish_thought_path(thought), data: { :confirm => "Are you sure?" }, method: :patch, class: 'button tiny secondary expand') : link_to("Publish", publish_thought_path(thought), data: { :confirm => "Are you sure?" }, method: :patch, class: 'button tiny default expand') %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

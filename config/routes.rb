@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   #     put 'users/:id' => 'devise/registrations#update', :as => 'user_registration'            
   #   end
 
-  resources :thoughts
+  resources :thoughts do
+    member do
+      patch :unpublish
+      patch :publish
+    end
+  end
 
 end

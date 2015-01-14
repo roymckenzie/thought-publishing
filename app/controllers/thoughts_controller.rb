@@ -1,9 +1,9 @@
 class ThoughtsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit]
-  before_action :get_thought, only: [:show, :edit, :update, :destroy]
+  before_action :get_thought, only: [:show, :edit, :update, :destroy, :unpublish, :publish]
 
   def index
-    @thoughts = Thought.where("published <= ?", Time.now)
+    @thoughts = Thought.all.order(published: :desc)
   end
 
   def new
@@ -36,6 +36,28 @@ class ThoughtsController < ApplicationController
   end
 
   def edit
+  end
+
+  def unpublish
+    @thought.published = nil
+    if @thought.save
+      flash[:warning] = "Thought was unpublished."
+      redirect_to thoughts_path
+    else
+      flash[:warning] = "There was a problem, please try again."
+      render action: 'index'
+    end
+  end
+
+  def publish
+    @thought.published = Time.now
+    if @thought.save
+      flash[:success] = "Thought was published."
+      redirect_to thoughts_path
+    else
+      flash[:warning] = "There was a problem, please try again."
+      render action: 'index'
+    end
   end
 
   def destroy

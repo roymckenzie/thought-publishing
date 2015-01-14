@@ -13,7 +13,36 @@
   </head>
 
   <body>
-
+  <div class="contain-to-grid fixed">
+    <nav class="top-bar" data-topbar role="navigation">
+      <section class="top-bar-section">
+        <ul class="title-area">
+          <li><%= link_to("Roy McKenzie", root_path) %></li>
+        </ul>
+        <ul class="right">
+          <li class="social"><a href="https://github.com/roymckenzie" title="Github" target="_blank"><i class="fi-social-github"></i></a></li>
+          <li class="divider"></li>
+          <li class="social"><a href="https://twitter.com/roymckenzie" title="Twitter" target="_blank"><i class="fi-social-twitter"></i></a></li>
+          <li class="divider"></li>
+          <li class="social"><a href="https://instagram.com/roymckenzie" title="Instagram" target="_blank"><i class="fi-social-instagram"></i></a></li>
+          <% if user_signed_in? %>
+          <li class="has-dropdown">
+            <a href="#">Menu</a>
+            <ul class="dropdown">
+              <li><%= link_to("Home", root_path) %></li>
+              <li class="divider"></li>
+              <li><label>Thoughts</label></li>
+              <li><%= link_to("All thoughts", thoughts_path) %></li>
+              <li><%= link_to("New thought", new_thought_path) %></li>
+              <li class="divider"></li>
+              <li><%= link_to("Sign out", destroy_user_session_path, method: :delete) %></li>
+            </ul>
+          </li>
+          <% end %>
+        </ul>
+      </section>
+    </nav>
+  </div>
   <div class="row">
     <div class="small-12 columns">
       <% flash.each do |name, msg| %>
@@ -22,7 +51,6 @@
           <a href="#" class="close">&times;</a>
         </div>
       <% end %>
-      <%= user_signed_in? ? link_to("Sign out", destroy_user_session_path, method: :delete, class: "right") : "" %>
       <%= yield %>
     </div>
   </div>
