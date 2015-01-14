@@ -18,3 +18,12 @@
 .image-attribution {
   font-style: italic;
 }
+
+.thought {
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(1.03,1.03);
+    -webkit-transform: scale(1.03,1.03);
+  }
+}
