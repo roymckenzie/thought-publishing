@@ -2,7 +2,7 @@
   <div class="small-12 medium-8 medium-centered columns">
     <hr>
     <%= user_signed_in? ? link_to("Edit", edit_thought_path(@thought), class: "right") : "" %>
-    <%= @thought.image? ? image_tag(@thought.image.url) : "" %>
+    <%= @thought.image? ? image_tag(@thought.image.url(:large)) : "" %>
     <h2><%= @thought.title%></h2>
     <%= simple_format(@thought.body) %>
   </div>

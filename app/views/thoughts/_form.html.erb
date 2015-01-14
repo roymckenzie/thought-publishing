@@ -8,7 +8,7 @@
     <%= f.submit class: "button expand small right" %>
     <%= f.label :published, 'Featured image' %>
     <div class="panel">
-      <%= @thought.image? ? image_tag(@thought.image.url) : "" %>
+      <%= @thought.image? ? image_tag(@thought.image.url(:medium)) : "" %>
       <%= f.file_field :image %>
     </div>
     <%= f.label :published, 'Published' %>
