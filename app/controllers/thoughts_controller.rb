@@ -12,10 +12,16 @@ class ThoughtsController < ApplicationController
 
   def create
     @thought = Thought.new(thought_params)
+    
+    publishMsg = ""
+    if params[:publish]
+      @thought.published = Time.now
+      publishMsg = " and published"
+    end
 
     if @thought.save
-      flash[:success] = "Thought was successfully created."
-      redirect_to @thought
+      flash[:success] = "Thought was successfully created#{publishMsg}."
+      redirect_to edit_thought_path(@thought)
     else
       flash[:warning] = "There was a problem, please try again."
       render action: 'new'
@@ -25,7 +31,7 @@ class ThoughtsController < ApplicationController
   def update
     if @thought.update(thought_params)
       flash[:success] = "Thought was successfully updated."
-      redirect_to @thought
+      redirect_to edit_thought_path(@thought)
     else
       flash[:warning] = "There was a problem, please try again."
       render action: 'edit'
@@ -40,9 +46,14 @@ class ThoughtsController < ApplicationController
 
   def unpublish
     @thought.published = nil
+
     if @thought.save
       flash[:warning] = "Thought was unpublished."
-      redirect_to thoughts_path
+      if view_context.get_refer_action == "edit"
+        redirect_to edit_thought_path(@thought)
+      else
+        redirect_to thoughts_path
+      end
     else
       flash[:warning] = "There was a problem, please try again."
       render action: 'index'
@@ -51,9 +62,14 @@ class ThoughtsController < ApplicationController
 
   def publish
     @thought.published = Time.now
+
     if @thought.save
       flash[:success] = "Thought was published."
-      redirect_to thoughts_path
+      if view_context.get_refer_action == "edit"
+        redirect_to edit_thought_path(@thought)
+      else
+        redirect_to thoughts_path
+      end
     else
       flash[:warning] = "There was a problem, please try again."
       render action: 'index'

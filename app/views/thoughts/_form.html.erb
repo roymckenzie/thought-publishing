@@ -6,22 +6,13 @@
   </div>
   <div class="small-4 columns">
     <%= f.submit class: "button success expand tiny right" %>
+    <%= publish_button(@thought) %>
     <%= f.label :published, 'Featured image' %>
     <div class="panel">
       <%= @thought.image? ? image_tag(@thought.image.url(:medium)) : "" %>
-      <%= f.file_field :image %>
+      <a href="#" class="upload-image-button button expand tiny"><%= @thought.image? ? "Replace image" : "Add image" %></a>
+      <%= f.file_field :image, class: "upload-image-field" %>
       <%= f.text_field :image_attribution, placeholder: "Image source" %>
-    </div>
-    <%= f.label :published, 'Published' %>
-    <div class="panel">
-      <%= f.label :published, 'Date' %>
-      <div class="row">
-        <%= f.date_select :published, use_separators: { wrapper_select_tag: { html_tag: :div, class_prefix: 'small-4 columns published_' }} %>
-      </div>
-      <%= f.label :published, 'Time' %>
-      <div class="row">
-        <%= f.time_select :published, :ignore_date => true, time_separator: '', use_separators: { wrapper_select_tag: { html_tag: :div, class_prefix: 'small-6 columns published_' }} %>
-      </div>
     </div>
   </div>
 </div>

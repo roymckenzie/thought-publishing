@@ -1,11 +1,21 @@
 <div class="row">
   <div class="small-12 medium-8 medium-offset-2 columns">
     <hr>
-    <%= @thought.image? ? image_tag(@thought.image.url(:large)) : "" %>
-    <small class="right image-attribution"><%= @thought.image_attribution %></small>
-    <h2><%= @thought.title%></h2>
-    <p><small><time class="thought-published"><%= time_ago_in_words(@thought.published) %> ago</time></small></p>
-    <%= simple_format(@thought.body) %>
+    <article class="h-entry">
+      <header>
+        <% if @thought.image %>
+          <figure class="entry-image u-featured">
+            <%= @thought.image? ? image_tag(@thought.image.url(:large)) : "" %>
+            <figcaption class="right"><%= @thought.image_attribution %></figcaption>
+          </figure>
+        <% end %>
+        <h1 class="p-name"><%= @thought.title%></h1>
+        <p class="byline">Added by <span class="p-author h-card">Roy McKenzie</span> <time class="dt-published" datetime="<%= @thought.published %>" title="<%= @thought.published %>"><%= time_ago_in_words(@thought.published) %> ago</time></p>
+      </header>
+      <div class="e-content">
+        <%= simple_format(@thought.body, {}, sanitize: false) %>
+      </div>
+    </article>
   </div>
   <% if user_signed_in? %>
   <div class="small-12 medium-2 columns">

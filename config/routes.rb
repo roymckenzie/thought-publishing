@@ -13,5 +13,5 @@ Rails.application.routes.draw do
       patch :publish
     end
   end
-
+  
 end

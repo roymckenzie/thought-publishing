@@ -1,6 +1,10 @@
-// Place all the styles related to the thoughts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$smoke: #EEEEEE;
+$silver: #EFEFEF;
+$gainsboro: #DDDDDD;
+$iron: #CCCCCC;
+$base: #AAAAAA;
+$aluminum: #999999;
+$font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 
 .thought-published {
   color: #aaa;
@@ -15,10 +19,6 @@
   font-size: 1rem;
 }
 
-.image-attribution {
-  font-style: italic;
-}
-
 .thought {
   transition: 0.2s;
 
@@ -27,3 +27,31 @@
     -webkit-transform: scale(1.03,1.03);
   }
 }
+
+/* Thoughts Show Page Start */
+
+.thoughts-show {
+
+  .entry-image {
+    margin: 0;
+
+    figcaption {
+      color: $base;
+      font-size: 0.8rem;
+      font-style: italic;
+    }
+  }
+
+  .byline {
+    color: $aluminum;
+    font-family: $font-family-serif;
+    font-style: italic;
+  }
+}
+
+/* Thoughts Show Page End   */
+
+
+
+
+
