@@ -1,5 +1,5 @@
 class ThoughtsController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :edit]
+  before_filter :authenticate_user!, except: [:show]
   before_action :get_thought, only: [:edit, :show, :destroy, :unpublish, :publish]
 
   def index
