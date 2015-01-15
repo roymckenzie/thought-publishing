@@ -1,3 +1,7 @@
-<h2>Edit thought</h2>
-<hr>
-<%= render "form" %>
+<% if params[:preview] %>
+  <%= render "thought_view" %>
+<% else %>
+  <h2>Edit thought</h2>
+  <hr>
+  <%= render "form" %>
+<% end %>

@@ -8,12 +8,13 @@
     <%= f.submit class: "button success expand tiny right" %>
     <%= publish_button(@thought) %>
     <%= preview_button(@thought) %>
+    <%= @thought.id? ? link_to("Destroy thought", thought_path(@thought), data: { :confirm => "Are you sure?" }, method: :delete, class: 'button tiny alert expand') : "" %>
     <%= f.label :published, 'Featured image' %>
     <div class="panel">
       <%= @thought.image? ? image_tag(@thought.image.url(:medium)) : "" %>
       <a href="#" class="upload-image-button button expand tiny"><%= @thought.image? ? "Replace image" : "Add image" %></a>
       <%= f.file_field :image, class: "upload-image-field" %>
-      <%= f.text_field :image_attribution, placeholder: "Image source" %>
+      <%= f.text_field :image_attribution, placeholder: "Image attribution" %>
     </div>
   </div>
 </div>

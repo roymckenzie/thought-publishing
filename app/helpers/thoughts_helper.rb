@@ -20,7 +20,7 @@ module ThoughtsHelper
         return link_to("Unpublish", unpublish_thought_path(thought), data: { :confirm => "Are you sure?" }, method: :patch, class: 'button tiny secondary expand')
       end
     else
-      return submit_tag "Publish", name: "publish", class: "button expand tiny right"
+      return submit_tag("Publish", name: "publish", class: "button expand tiny")
     end
   end
 
@@ -29,9 +29,7 @@ module ThoughtsHelper
   end
 
   def preview_button(thought)
-    if thought.id?
-      return link_to("Preview", thought_path(thought), class: 'button tiny expand')
-    end
+    return submit_tag("Preview changes", name: "preview", class: "button expand tiny")
   end
 
 end

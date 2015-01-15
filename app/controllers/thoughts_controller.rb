@@ -1,6 +1,6 @@
 class ThoughtsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :edit]
-  before_action :get_thought, only: [:show, :edit, :update, :destroy, :unpublish, :publish]
+  before_action :get_thought, only: [:edit, :show, :destroy, :unpublish, :publish]
 
   def index
     @thoughts = Thought.all.order(published: :desc)
@@ -29,12 +29,18 @@ class ThoughtsController < ApplicationController
   end
 
   def update
-    if @thought.update(thought_params)
-      flash[:success] = "Thought was successfully updated."
-      redirect_to edit_thought_path(@thought)
-    else
-      flash[:warning] = "There was a problem, please try again."
+    if params[:preview]
+      @thought = Thought.new(thought_params)
       render action: 'edit'
+    else
+      @thought = Thought.find(params[:id])
+      if @thought.update(thought_params)
+        flash[:success] = "Thought was successfully updated."
+        redirect_to edit_thought_path(@thought)
+      else
+        flash[:warning] = "There was a problem, please try again."
+        render action: 'edit'
+      end
     end
   end
 
@@ -48,7 +54,9 @@ class ThoughtsController < ApplicationController
     @thought.published = nil
 
     if @thought.save
+
       flash[:warning] = "Thought was unpublished."
+
       if view_context.get_refer_action == "edit"
         redirect_to edit_thought_path(@thought)
       else
@@ -91,4 +99,5 @@ class ThoughtsController < ApplicationController
   def thought_params
     params.require(:thought).permit!
   end
+
 end

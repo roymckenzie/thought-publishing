@@ -30,7 +30,7 @@ $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 
 /* Thoughts Show Page Start */
 
-.thoughts-show {
+.thoughts-show, .thoughts-update {
 
   .entry-image {
     margin: 0;
@@ -63,7 +63,7 @@ $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
   }
 }
 
-.thoughts-edit {
+.thoughts-edit, .thoughts-new {
 
   .upload-image-field {
     display: none;
