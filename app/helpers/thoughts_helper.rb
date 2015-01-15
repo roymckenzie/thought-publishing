@@ -28,4 +28,10 @@ module ThoughtsHelper
     return Rails.application.routes.recognize_path(request.referrer)[:action]
   end
 
+  def preview_button(thought)
+    if thought.id?
+      return link_to("Preview", thought_path(thought), class: 'button tiny expand')
+    end
+  end
+
 end

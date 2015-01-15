@@ -1,12 +1,13 @@
 <%= form_for(@thought) do |f| %>
 <div class="row">
-  <div class="small-8 columns">
+  <div class="small-12 medium-8 columns">
     <%= f.text_field :title, placeholder: 'Title' %>
     <%= f.text_area :body, placeholder: 'Explain your thoughts', :rows => '10' %>
   </div>
-  <div class="small-4 columns">
+  <div class="small-12 medium-4 columns">
     <%= f.submit class: "button success expand tiny right" %>
     <%= publish_button(@thought) %>
+    <%= preview_button(@thought) %>
     <%= f.label :published, 'Featured image' %>
     <div class="panel">
       <%= @thought.image? ? image_tag(@thought.image.url(:medium)) : "" %>
