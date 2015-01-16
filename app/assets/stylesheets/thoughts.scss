@@ -4,6 +4,7 @@ $gainsboro: #DDDDDD;
 $iron: #CCCCCC;
 $base: #AAAAAA;
 $aluminum: #999999;
+$alert-color: #f04124;
 $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 
 .thought-published {
@@ -11,8 +12,14 @@ $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 0.8rem;
 }
 
-.add-thought {
-  margin-top: 1rem;
+.add-thought, .back-to-thoughts {
+  margin-bottom: 0;
+  margin-top: 0.8rem;
+  vertical-align: middle;
+}
+
+.thought-filter.active {
+  font-weight: bold;
 }
 
 .social i {
@@ -29,6 +36,16 @@ $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 /* Thoughts Show Page Start */
+
+.thoughts-index {
+  h2 {
+
+    button {
+      margin-bottom: 0;
+      vertical-align: middle
+    }
+  }
+}
 
 .thoughts-show, .thoughts-update {
 
@@ -67,6 +84,11 @@ $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 
   .upload-image-field {
     display: none;
+  }
+
+  .trash-thought {
+    color: $alert-color;
+    font-size: 0.7rem;
   }
 }
 

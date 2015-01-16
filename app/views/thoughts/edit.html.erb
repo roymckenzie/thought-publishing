@@ -1,7 +1,7 @@
 <% if params[:preview] %>
   <%= render "thought_view" %>
 <% else %>
-  <h2>Edit thought</h2>
+  <h2>Edit thought <%= link_to("<i class=\"fi-page-multiple\"></i>&nbsp;&nbsp;Back to thoughts".html_safe, thoughts_path, class: 'button tiny secondary right back-to-thoughts') %></h2>
   <hr>
   <%= render "form" %>
 <% end %>

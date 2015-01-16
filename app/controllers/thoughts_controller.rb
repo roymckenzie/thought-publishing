@@ -3,7 +3,9 @@ class ThoughtsController < ApplicationController
   before_action :get_thought, only: [:edit, :show, :destroy, :unpublish, :publish]
 
   def index
-    @thoughts = Thought.all.order(published: :desc)
+    @thoughts = Thought.search(params[:trash])
+    @active_count = Thought.where(trash: false).count
+    @trash_count = Thought.where(trash: true).count
   end
 
   def new
@@ -48,6 +50,32 @@ class ThoughtsController < ApplicationController
   end
 
   def edit
+  end
+
+  def trash
+    @thought = Thought.find(params[:id])
+    @thought.trash = true
+    @thought.published = nil
+    if @thought.save
+      flash[:success] = "Thought was successfully trashed."
+      redirect_to thoughts_path
+    else
+      flash[:warning] = "There was a problem, please try again."
+      render action: 'edit'
+    end
+  end
+
+  def restore
+    @thought = Thought.find(params[:id])
+    @thought.trash = false
+    @thought.published = nil
+    if @thought.save
+      flash[:success] = "Thought was successfully restored."
+      redirect_to edit_thought_path(@thought)
+    else
+      flash[:warning] = "There was a problem, please try again."
+      render action: 'edit'
+    end
   end
 
   def unpublish

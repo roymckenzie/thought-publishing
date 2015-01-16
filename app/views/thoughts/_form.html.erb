@@ -5,10 +5,32 @@
     <%= f.text_area :body, placeholder: 'Explain your thoughts', :rows => '10' %>
   </div>
   <div class="small-12 medium-4 columns">
-    <%= f.submit class: "button success expand tiny right" %>
-    <%= publish_button(@thought) %>
-    <%= preview_button(@thought) %>
-    <%= @thought.id? ? link_to("Destroy thought", thought_path(@thought), data: { :confirm => "Are you sure?" }, method: :delete, class: 'button tiny alert expand') : "" %>
+    <div class="row">
+      <div class="small-6 columns">
+        <% if @thought.id? && @thought.trash == false %>
+          <%= f.submit class: "button secondary tiny" %>
+        <% end %>
+      </div>
+      <div class="small-6 columns">
+        <% if @thought.id? && @thought.trash == false %>
+          <%= preview_button(@thought) %>
+        <% else %>
+          <%= @thought.id? ? link_to("Restore", restore_thought_path(@thought), method: :patch, data: { :confirm => "Restore thought from trash?" }, class: 'button success tiny right') : "" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-6 columns">
+        <% if @thought.id? && @thought.trash == false %>
+          <%= @thought.id? ? link_to("Move to trash", trash_thought_path(@thought), method: :patch, data: { :confirm => "Are you sure?" }, class: 'trash-thought') : "" %>
+        <% end %>
+      </div>
+      <div class="small-6 columns">
+        <% if @thought.id? && @thought.trash == false %>
+          <%= publish_button(@thought) %>
+        <% end %>
+      </div>
+    </div>
     <%= f.label :published, 'Featured image' %>
     <div class="panel">
       <%= @thought.image? ? image_tag(@thought.image.url(:medium)) : "" %>

@@ -1,14 +1,26 @@
-<h2>Thoughts <%= link_to("<i class=\"fi-plus\"></i>&nbsp;&nbsp;Add thought".html_safe, new_thought_path, class: 'button tiny success right add-thought') %></h2>
+<%= form_tag thoughts_path, method: :get do %>
+  <h2>Thoughts 
+    <% if @trash_count > 0 %>
+      <%= button_tag "All (#{@active_count})", value: "false", name: "trash", class: "thought-filter tiny secondary #{ params[:trash] == 'false' || params[:trash] == nil ? 'active' : ''}" %>
+      <%= button_tag "Trash (#{@trash_count})", value: "true", name: "trash", class: "thought-filter tiny secondary #{ params[:trash] == 'true' ? 'active' : ''}" %>
+    <% end %>
+    <%= link_to("<i class=\"fi-plus\"></i>&nbsp;&nbsp;Add thought".html_safe, new_thought_path, class: 'button tiny right add-thought') %></h2>
+<% end %>
 <hr>
+<% if @thoughts.any?%>
 <table class="thoughts-table-index">
   <thead>
     <tr>
       <th width="300">Title</th>
       <th>Body</th>
+      <% if params[:trash] != "true" %>
       <th width="150">Published</th>
       <th width="100"></th>
       <th></th>
-      <th></th>
+      <th>Trash</th>
+      <% else %>
+      <th>Restore</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -16,11 +28,22 @@
     <tr>
       <td><%= link_to(thought.title, edit_thought_path(thought)) %></td>
       <td><%= truncate(thought.body, :length => 100, :separator => ' ') %></td>
+      <% if params[:trash] != "true" %>
       <td><%= published_status(thought.published) %></td>
       <td><%= publish_button(thought) %></td>
-      <td><%= link_to("<i class=\"fi-trash\"></i>".html_safe, thought_path(thought), data: { :confirm => "Are you sure?" }, method: :delete, class: 'button tiny alert') %></td>
-      <td><%= link_to("<i class=\"fi-eye\"></i>".html_safe, thought_path(thought), class: 'button tiny') %></td>
+      <td><%= link_to("Preview", thought_path(thought), class: 'button secondary tiny') %></td>
+      <td><%= link_to("<i class=\"fi-trash\"></i>".html_safe, trash_thought_path(thought), data: { :confirm => "Move thought to trash?" }, method: :patch, class: 'button tiny alert') %></td>
+      <% else %>
+      <td><%= link_to("<i class=\"fi-trash\"></i>".html_safe, restore_thought_path(thought), data: { :confirm => "Restore thought from trash?" }, method: :patch, class: 'button tiny success') %></td>
+      <% end %>
     </tr>
   <% end %>
   </tbody>
 </table>
+<% else %>
+  <% if params[:trash] != "true" %>
+  <div data-alert class="alert-box secondary text-center">There are no thoughts. Start by <%= link_to("creating one", new_thought_path) %>.</div>
+  <% else %>
+  <div data-alert class="alert-box secondary text-center">There are no thoughts in the trash.</div>
+  <% end %>
+<% end %>
