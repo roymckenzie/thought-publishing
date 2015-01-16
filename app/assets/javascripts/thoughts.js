@@ -4,6 +4,7 @@ $(document).on("click", ".upload-image-button", function () {
   event.preventDefault()
 });
 
+// Update button text to show file name
 $(document).on("change", ".upload-image-field", function () {
   var fileName  = $(this).val();
   var lastIndex = fileName.lastIndexOf("\\")
@@ -12,3 +13,8 @@ $(document).on("change", ".upload-image-field", function () {
   }
   $(".upload-image-button").html(fileName)
 });
+
+// Close Foundation alerts after 4 seconds
+window.setTimeout(function () {
+  $(".alert-box a.close").trigger("click.fndtn.alert")
+}, 4000)
