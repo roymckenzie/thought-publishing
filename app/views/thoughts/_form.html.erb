@@ -12,10 +12,8 @@
         <% end %>
       </div>
       <div class="small-6 columns">
-        <% if @thought.id? && @thought.trash == false %>
-          <%= preview_button(@thought) %>
-        <% else %>
-          <%= @thought.id? ? link_to("Restore", restore_thought_path(@thought), method: :patch, data: { :confirm => "Restore thought from trash?" }, class: 'button success tiny right') : "" %>
+        <% if @thought.trash == false %>
+          <%= publish_button(@thought) %>
         <% end %>
       </div>
     </div>
@@ -27,7 +25,9 @@
       </div>
       <div class="small-6 columns">
         <% if @thought.id? && @thought.trash == false %>
-          <%= publish_button(@thought) %>
+          <%= preview_button(@thought) %>
+        <% else %>
+          <%= @thought.id? ? link_to("Restore", restore_thought_path(@thought), method: :patch, data: { :confirm => "Restore thought from trash?" }, class: 'button success tiny right') : "" %>
         <% end %>
       </div>
     </div>
