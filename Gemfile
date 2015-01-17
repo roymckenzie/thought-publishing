@@ -5,6 +5,9 @@ gem 'rails', '4.2.0'
 gem 'pg'
 gem 'unicorn'
 gem 'newrelic_rpm'
+gem 'redis'
+gem 'sidekiq'
+gem 'sinatra', :require => nil
 
 gem 'sass'
 gem 'sass-rails'
@@ -15,6 +18,7 @@ gem 'date_select_separator'
 
 gem 'opengraph_parser'
 gem 'paperclip'
+gem 'delayed_paperclip'
 gem 'aws-sdk'
 gem 'devise'
 
