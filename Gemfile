@@ -8,6 +8,7 @@ gem 'newrelic_rpm'
 gem 'redis'
 gem 'sidekiq'
 gem 'sinatra', :require => nil
+gem 'rack-timeout'
 
 gem 'sass'
 gem 'sass-rails'
