@@ -18,7 +18,8 @@ gem 'date_select_separator'
 
 gem 'opengraph_parser'
 gem 'paperclip'
-gem 'delayed_paperclip'
+# Re-enable once delayed_paperclip sanitization bug is fixed.
+# gem 'delayed_paperclip'
 gem 'aws-sdk'
 gem 'devise'
 
