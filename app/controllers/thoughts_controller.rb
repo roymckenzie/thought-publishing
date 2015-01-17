@@ -1,6 +1,6 @@
 class ThoughtsController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
-  before_action :get_thought, only: [:edit, :show, :destroy, :unpublish, :publish]
+  before_action :get_thought, only: [:edit, :show, :destroy, :unpublish, :publish, :trash, :restore]
 
   def index
     @thoughts = Thought.search(params[:trash])
@@ -35,7 +35,7 @@ class ThoughtsController < ApplicationController
       @thought = Thought.new(thought_params)
       render action: 'edit'
     else
-      @thought = Thought.find(params[:id])
+      @thought = Thought.friendly.find(params[:id])
       if @thought.update(thought_params)
         flash[:success] = "Thought was successfully updated."
         redirect_to edit_thought_path(@thought)
@@ -53,7 +53,6 @@ class ThoughtsController < ApplicationController
   end
 
   def trash
-    @thought = Thought.find(params[:id])
     @thought.trash = true
     @thought.published = nil
     if @thought.save
@@ -66,7 +65,6 @@ class ThoughtsController < ApplicationController
   end
 
   def restore
-    @thought = Thought.find(params[:id])
     @thought.trash = false
     @thought.published = nil
     if @thought.save
@@ -121,7 +119,7 @@ class ThoughtsController < ApplicationController
   private
 
   def get_thought
-    @thought = Thought.find(params[:id])
+    @thought = Thought.friendly.find(params[:id])
   end
 
   def thought_params

@@ -16,6 +16,7 @@ gem 'foundation-icons-sass-rails'
 
 gem 'date_select_separator'
 
+gem 'friendly_id'
 gem 'opengraph_parser'
 gem 'paperclip'
 # Re-enable once delayed_paperclip sanitization bug is fixed.

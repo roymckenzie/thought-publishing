@@ -12,6 +12,14 @@ $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 0.8rem;
 }
 
+.button.tiny i {
+  font-size: 0.8rem;
+}
+
+table .button {
+  margin-bottom: 0;
+}
+
 .add-thought, .back-to-thoughts {
   margin-bottom: 0;
   margin-top: 0.8rem;

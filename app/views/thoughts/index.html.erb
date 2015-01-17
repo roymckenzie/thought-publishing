@@ -20,21 +20,23 @@
       <th>Trash</th>
       <% else %>
       <th>Restore</th>
+      <th>Delete</th>
       <% end %>
     </tr>
   </thead>
   <tbody>
   <% @thoughts.each do |thought| %>
     <tr>
-      <td><%= link_to(thought.title, edit_thought_path(thought)) %></td>
+      <td><%= link_to(thought.title, thought_path(thought), target: "_blank") %></td>
       <td><%= truncate(thought.body, :length => 100, :separator => ' ') %></td>
       <% if params[:trash] != "true" %>
       <td><%= published_status(thought.published) %></td>
       <td><%= publish_button(thought) %></td>
-      <td><%= link_to("Preview", thought_path(thought), class: 'button secondary tiny') %></td>
+      <td><%= link_to("Edit", edit_thought_path(thought), class: 'button secondary tiny') %></td>
       <td><%= link_to("<i class=\"fi-trash\"></i>".html_safe, trash_thought_path(thought), data: { :confirm => "Move thought to trash?" }, method: :patch, class: 'button tiny alert') %></td>
       <% else %>
       <td><%= link_to("<i class=\"fi-trash\"></i>".html_safe, restore_thought_path(thought), data: { :confirm => "Restore thought from trash?" }, method: :patch, class: 'button tiny success') %></td>
+      <td><%= link_to("<i class=\"fi-x\"></i>".html_safe, thought_path(thought), data: { :confirm => "Permanently delete thought?" }, method: :delete, class: 'button tiny alert') %></td>
       <% end %>
     </tr>
   <% end %>
