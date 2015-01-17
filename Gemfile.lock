@@ -61,6 +61,8 @@ GEM
     connection_pool (2.1.0)
     date_select_separator (0.0.7)
       rails (>= 4.0.0)
+    delayed_paperclip (2.9.0)
+      paperclip (>= 3.3)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -110,7 +112,7 @@ GEM
       addressable
       nokogiri
     orm_adapter (0.5.0)
-    paperclip (4.2.1)
+    paperclip (4.2.0)
       activemodel (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
@@ -213,6 +215,7 @@ DEPENDENCIES
   aws-sdk
   coffee-rails (~> 4.0.0)
   date_select_separator
+  delayed_paperclip
   devise
   dotenv-rails
   foundation-icons-sass-rails
@@ -222,7 +225,7 @@ DEPENDENCIES
   jquery-rails
   newrelic_rpm
   opengraph_parser
-  paperclip
+  paperclip (<= 4.2.0)
   pg
   rails (= 4.2.0)
   rails_12factor
