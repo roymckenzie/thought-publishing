@@ -6,9 +6,9 @@
         <%= thought.image? ? link_to(image_tag(thought.image.url(:medium)), thought) : "" %>
         <div class="panel clearfix">
           <h4><%= thought.title %></h4>
-          <p><%= truncate(thought.body, :length => 100, :separator => ' ') %></p>
+          <% if thought.summary? %><p class="entry-summary"><%= thought.summary %></p><% end %>
           <time class="thought-published"><%= time_ago_in_words(thought.published) %> ago</time>
-          <%= link_to("Read more", thought, class: 'right') %>
+          <%= link_to("Read more", thought, class: 'right read-more') %>
         </div>
       </li>
     <% end %>

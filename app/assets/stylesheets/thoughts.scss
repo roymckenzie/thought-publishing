@@ -8,10 +8,6 @@ $alert-color: #f04124;
 $primary-color: #008CBA;
 $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 
-.thought-published {
-  color: #aaa;
-  font-size: 0.8rem;
-}
 
 .button.tiny i {
   font-size: 0.8rem;
@@ -38,6 +34,11 @@ table .button {
 .thought {
   transition: 0.2s;
 
+  .entry-summary {
+    color: $aluminum;
+    font-size: 0.9rem;
+  }
+
   &:hover {
     transform: scale(1.02,1.02);
     -webkit-transform: scale(1.02,1.02);
@@ -45,6 +46,16 @@ table .button {
 
   .panel {
     margin-bottom: 0;
+  }
+
+  .thought-published {
+    color: $base;
+    font-size: 0.8rem;
+  }
+
+  .read-more {
+    font-size: 0.8rem;
+    padding-top: 0.2rem;
   }
 }
 
