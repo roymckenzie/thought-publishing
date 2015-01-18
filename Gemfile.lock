@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/jrgifford/delayed_paperclip.git
+  revision: 223a265e17f1efae14bfec9e3b649527ee77f90c
+  specs:
+    delayed_paperclip (2.9.0)
+      paperclip (>= 3.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,8 +68,6 @@ GEM
     connection_pool (2.1.0)
     date_select_separator (0.0.7)
       rails (>= 4.0.0)
-    delayed_paperclip (2.9.0)
-      paperclip (>= 3.3)
     devise (3.4.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -216,7 +221,7 @@ DEPENDENCIES
   aws-sdk
   coffee-rails (~> 4.0.0)
   date_select_separator
-  delayed_paperclip
+  delayed_paperclip!
   devise
   dotenv-rails
   foundation-icons-sass-rails
