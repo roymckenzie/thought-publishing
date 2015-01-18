@@ -23,7 +23,7 @@
   <% if user_signed_in? %>
   <div class="small-12 medium-2 columns">
     <hr>
-    <%= @thought.id? ? link_to("Edit thought", edit_thought_path(@thought), class: "button expand small") : "" %>
+    <%= link_to("Edit thought", edit_thought_path(@thought), class: "button expand small") %>
   </div>
   <% end %>
 </div>
