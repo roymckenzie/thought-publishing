@@ -33,7 +33,7 @@ module ThoughtsHelper
   end
 
   def preview_button(thought)
-    return submit_tag("Preview", name: "preview", class: "button secondary tiny right")
+    return submit_tag("Preview", name: "preview", class: "button tiny secondary right")
   end
 
 end

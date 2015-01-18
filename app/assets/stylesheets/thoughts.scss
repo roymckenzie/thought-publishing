@@ -6,8 +6,33 @@ $base: #AAAAAA;
 $aluminum: #999999;
 $alert-color: #f04124;
 $primary-color: #008CBA;
-$font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+$font-family-serif: "Lora", Georgia, Cambria, "Times New Roman", Times, serif;
 
+.top-bar {
+
+  .byline {
+    color: #aaa;
+    font-family: $font-family-serif;
+    font-style: italic;
+  }
+
+  .title-area {
+
+    .name h1, .name span {
+      font-size: 1.4rem;
+
+      a {
+        font-family: "Open Sans Condensed", sans-serif;
+        font-weight: 700;
+      }
+
+      span {
+        color: #aaa;
+        font-weight: 300;
+      }
+    }
+  }
+}
 
 .button.tiny i {
   font-size: 0.8rem;
@@ -28,35 +53,42 @@ table .button {
 }
 
 .social i {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .thought {
-  transition: 0.2s;
 
-  .entry-summary {
+  .p-name {
+    font-family: "Open Sans Condensed", sans-serif;
+    font-weight: 700;
+  }
+
+  .p-summary {
     color: $aluminum;
+    font-family: $font-family-serif;
     font-size: 0.9rem;
   }
 
-  &:hover {
-    transform: scale(1.02,1.02);
-    -webkit-transform: scale(1.02,1.02);
-  }
-
   .panel {
-    margin-bottom: 0;
+    border-top: 0;
+    margin-bottom: 1rem;
   }
 
   .thought-published {
     color: $base;
+    font-family: $font-family-serif;
     font-size: 0.8rem;
   }
 
   .read-more {
+    font-family: $font-family-serif;
     font-size: 0.8rem;
-    padding-top: 0.2rem;
+    padding-top: 0.3rem;
   }
+}
+
+.thoughts {
+
 }
 
 /* Thoughts Show Page Start */
@@ -73,9 +105,15 @@ table .button {
 
 .thoughts-show, .thoughts-update {
 
-  .entry-summary {
+  .p-name {
+    font-family: "Open Sans Condensed", sans-serif;
+    font-weight: 700;
+  }
+
+  .p-summary {
     color: $base;
-    font-size: 1.2rem;
+    font-family: "Open Sans Condensed", sans-serif;
+    font-size: 1.5rem;
     font-style: italic;
   }
 
@@ -109,6 +147,10 @@ table .button {
     font-size: 0.8rem;
     padding: 0;
   }
+
+  .e-content p {
+    font-family: $font-family-serif;
+  }
 }
 
 .thoughts-edit, .thoughts-new {
@@ -120,6 +162,18 @@ table .button {
   .trash-thought {
     color: $alert-color;
     font-size: 0.7rem;
+  }
+
+  .button.back-to-thoughts {
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+  }
+}
+
+.thoughts-index {
+
+  .add-thought {
+    margin-top: 0.5rem;
   }
 }
 

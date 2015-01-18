@@ -1,16 +1,17 @@
 <% if @thoughts.any? %>
   <hr>
-  <ul class="large-block-grid-3 medium-block-grid-2 small-block-grid-1 thoughts">
-    <% @thoughts.each do |thought| %>
-      <li class="thought">
-        <%= thought.image? ? link_to(image_tag(thought.image.url(:medium)), thought) : "" %>
-        <div class="panel clearfix">
-          <h4><%= thought.title %></h4>
-          <% if thought.summary? %><p class="entry-summary"><%= thought.summary %></p><% end %>
-          <time class="dt-published thought-published" datetime="<%= pretty_publish_date_time(thought.published) %>" title="<%= pretty_publish_date_time(thought.published) %>"><%= time_ago_in_words(thought.published) %> ago</time>
-          <%= link_to("Read more", thought, class: 'right read-more') %>
-        </div>
+    <ul class="thoughts small-block-grid-1 medium-block-grid-2 large-block-grid-3">
+      <% @thoughts.each do |thought| %>
+      <li>
+        <article class="thought">
+          <%= thought.image? ? link_to(image_tag(thought.image.url(:medium)), thought) : "" %>
+          <div class="panel">
+            <h4 class="p-name"><%= thought.title %></h4>
+            <% if thought.summary? %><p class="p-summary"><%= thought.summary %></p><% end %>
+            <p><time class="dt-published thought-published" datetime="<%= pretty_publish_date_time(thought.published) %>" title="<%= pretty_publish_date_time(thought.published) %>"><%= time_ago_in_words(thought.published) %> ago</time><%= link_to("Read more", thought, class: 'right read-more') %></p>
+          </div>
+        </article>
       </li>
-    <% end %>
-  </ul>
+      <% end %>
+    </ul>
 <% end %>
