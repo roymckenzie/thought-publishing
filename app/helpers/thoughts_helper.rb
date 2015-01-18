@@ -11,7 +11,11 @@ module ThoughtsHelper
   end
 
   def pretty_publish_date_time(published)
-    return published.strftime("%B %d, %Y at %l:%M%P")
+    if published.present?
+      return published.strftime("%B %d, %Y at %l:%M%P")
+    else
+      return "not yet published"
+    end
   end
 
   def publish_button(thought)
