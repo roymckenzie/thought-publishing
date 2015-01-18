@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117120648) do
+ActiveRecord::Schema.define(version: 20150118004137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150117120648) do
     t.string   "image_attribution"
     t.boolean  "trash",              default: false
     t.string   "slug"
+    t.boolean  "image_processing"
   end
 
   add_index "thoughts", ["link_id"], name: "index_thoughts_on_link_id", using: :btree

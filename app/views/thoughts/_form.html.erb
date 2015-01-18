@@ -1,4 +1,4 @@
-<%= form_for(@thought) do |f| %>
+<%= form_for(@thought, :html => {:multipart => true}) do |f| %>
 <div class="row">
   <div class="small-12 medium-8 columns">
     <%= f.text_field :title, placeholder: 'Title' %>
