@@ -1,7 +1,7 @@
 <%= form_for(@thought, :html => {:multipart => true}) do |f| %>
 <%= f.hidden_field :id %>
 <% if @thought.image? %>
-  <%= f.hidden_field :image %>
+  <%= hidden_field_tag :image_url, @thought.image.url(:large) %>
 <% end %>
 <div class="row">
   <div class="small-12 medium-8 columns">

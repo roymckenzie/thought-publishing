@@ -8,9 +8,14 @@
           <p class="p-summary"><%= @thought.summary %></p>
         <% end %>
         <p class="byline">Added by <span class="p-author h-card">Roy McKenzie</span> <time class="dt-published" datetime="<%= @thought.published %>" title="<%= pretty_publish_date_time(@thought.published) %>"><%= @thought.published? ? time_ago_in_words(@thought.published) + " ago" : "not yet publised" %> </time></p>
-        <% if @thought.image %>
+        <% if @thought.image? %>
           <figure class="entry-image u-featured">
             <%= @thought.image? ? image_tag(@thought.image.url(:large)) : "" %>
+            <figcaption class="right"><%= @thought.image_attribution %></figcaption>
+          </figure>
+        <% elsif params[:image_url] %>
+          <figure class="entry-image u-featured">
+            <%= image_tag(params[:image_url]) %>
             <figcaption class="right"><%= @thought.image_attribution %></figcaption>
           </figure>
         <% end %>
