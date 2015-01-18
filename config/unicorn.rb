@@ -3,7 +3,7 @@ timeout 25
 preload_app true
 
 before_fork do |server, worker|
-  @sidekiq_pid ||= spawn("bundle exec sidekiq -t 25 -c 2 -q paperclip -v")
+  @sidekiq_pid ||= spawn("bundle exec sidekiq -t 25 -c 2 -q paperclip")
   
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'

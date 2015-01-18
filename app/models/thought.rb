@@ -1,11 +1,11 @@
 class Thought < ActiveRecord::Base
   extend FriendlyId
-  has_attached_file :image, :styles => {:large => "800x600#", :medium => "600x450#", :thumb => "100x75#" }
+  has_attached_file :image, :styles => {:large => "640x480#", :medium => "480x360#", :thumb => "100x75#" }
   friendly_id :slug_candidates, use: :slugged
   belongs_to :link
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
-  process_in_background :image, processing_image_url: "http://placehold.it/800x600"
+  process_in_background :image, processing_image_url: :process_image
 
   def self.search(trash)
     if trash == "true"
@@ -21,5 +21,10 @@ class Thought < ActiveRecord::Base
       :title,
       [ :title, Time.now.year ]
     ]
+  end
+
+  def process_image
+      options = image.options
+      options[:interpolator].interpolate(options[:url], image, :original)
   end
 end
