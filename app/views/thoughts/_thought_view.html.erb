@@ -7,7 +7,7 @@
         <% if @thought.summary? %>
           <p class="entry-summary"><%= @thought.summary %></p>
         <% end %>
-        <p class="byline">Added by <span class="p-author h-card">Roy McKenzie</span> <time class="dt-published" datetime="<%= @thought.published %>" title="<%= @thought.published %>"><%= @thought.published? ? time_ago_in_words(@thought.published) + " ago" : "not yet publised" %> </time></p>
+        <p class="byline">Added by <span class="p-author h-card">Roy McKenzie</span> <time class="dt-published" datetime="<%= @thought.published %>" title="<%= pretty_publish_date_time(@thought.published) %>"><%= @thought.published? ? time_ago_in_words(@thought.published) + " ago" : "not yet publised" %> </time></p>
         <% if @thought.image %>
           <figure class="entry-image u-featured">
             <%= @thought.image? ? image_tag(@thought.image.url(:large)) : "" %>

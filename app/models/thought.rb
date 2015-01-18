@@ -1,6 +1,7 @@
 class Thought < ActiveRecord::Base
   extend FriendlyId
-  has_attached_file :image, :styles => {:large => "640x480#", :medium => "480x360#", :thumb => "100x75#" }
+  enum kind: [ :text, :photo, :link ]
+  has_attached_file :image, :styles => { :large => "640x480#", :medium => "480x360#", :thumb => "100x75#" }
   friendly_id :slug_candidates, use: :slugged
   belongs_to :link
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
@@ -9,11 +10,11 @@ class Thought < ActiveRecord::Base
 
   def self.search(trash)
     if trash == "true"
-      query = Thought.where(trash: true)
+      query = Thought.where( trash: true )
     else
-      query = Thought.where(trash: false)
+      query = Thought.where( trash: false )
     end
-    query.order(published: :desc)
+    query.order( published: :desc )
   end
 
   def slug_candidates
@@ -25,6 +26,6 @@ class Thought < ActiveRecord::Base
 
   def process_image
       options = image.options
-      options[:interpolator].interpolate(options[:url], image, :original)
+      options[:interpolator].interpolate( options[:url], image, :original )
   end
 end

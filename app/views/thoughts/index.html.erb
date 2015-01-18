@@ -11,11 +11,11 @@
 <table class="thoughts-table-index">
   <thead>
     <tr>
+      <th>Kind</th>
       <th width="300">Title</th>
-      <th>Body</th>
       <% if params[:trash] != "true" %>
-      <th width="150">Published</th>
-      <th width="100"></th>
+      <th>Published</th>
+      <th></th>
       <th></th>
       <th>Trash</th>
       <% else %>
@@ -27,8 +27,8 @@
   <tbody>
   <% @thoughts.each do |thought| %>
     <tr>
+      <td><%= thought.kind.titleize %></td>
       <td><%= link_to(thought.title, thought_path(thought), target: "_blank") %></td>
-      <td><%= truncate(thought.body, :length => 100, :separator => ' ') %></td>
       <% if params[:trash] != "true" %>
       <td><%= published_status(thought.published) %></td>
       <td><%= publish_button(thought) %></td>

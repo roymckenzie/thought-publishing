@@ -7,7 +7,7 @@
         <div class="panel clearfix">
           <h4><%= thought.title %></h4>
           <% if thought.summary? %><p class="entry-summary"><%= thought.summary %></p><% end %>
-          <time class="thought-published"><%= time_ago_in_words(thought.published) %> ago</time>
+          <time class="dt-published thought-published" datetime="<%= pretty_publish_date_time(thought.published) %>" title="<%= pretty_publish_date_time(thought.published) %>"><%= time_ago_in_words(thought.published) %> ago</time>
           <%= link_to("Read more", thought, class: 'right read-more') %>
         </div>
       </li>

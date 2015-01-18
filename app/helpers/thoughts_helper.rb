@@ -1,13 +1,17 @@
 module ThoughtsHelper
 
-  def published_status(published_time)
-    if published_time == nil
+  def published_status(published)
+    if published == nil
       return "Unscheduled"
-    elsif published_time >= Time.now
-      return "Scheduled for<br> #{published_time.strftime("%B %d, %Y <br>at %H:%M")}".html_safe
-    elsif published_time <= Time.now
-      return "Published<br>#{published_time.strftime("%B %d, %Y <br>at %H:%M")}".html_safe
+    elsif published >= Time.now
+      return "Scheduled for #{pretty_publish_date_time(published)}".html_safe
+    elsif published <= Time.now
+      return "#{pretty_publish_date_time(published)}".html_safe
     end
+  end
+
+  def pretty_publish_date_time(published)
+    return published.strftime("%B %d, %Y at %l:%M%P")
   end
 
   def publish_button(thought)

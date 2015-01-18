@@ -7,6 +7,9 @@
   </div>
   <div class="small-12 medium-4 columns">
     <div class="row">
+      <div class="small-12 columns">
+        <%= f.select :kind, Thought.kinds.keys.map { |kind| [ kind.titleize, kind ] } %>
+      </div>
       <div class="small-6 columns">
         <% if @thought.trash == false %>
           <%= f.submit class: "button secondary tiny" %>
