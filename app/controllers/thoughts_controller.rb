@@ -10,6 +10,7 @@ class ThoughtsController < ApplicationController
 
   def new
     @thought = Thought.new
+    @thought.build_link
   end
 
   def create
@@ -20,6 +21,8 @@ class ThoughtsController < ApplicationController
       @thought.published = Time.now
       publishMsg = " and published"
     end
+
+    check_link
 
     if @thought.save
       flash[:success] = "Thought was successfully created#{publishMsg}."
@@ -36,6 +39,7 @@ class ThoughtsController < ApplicationController
       render action: 'edit'
     else
       @thought = Thought.friendly.find(params[:id])
+      check_link
       if @thought.update(thought_params)
         flash[:success] = "Thought was successfully updated."
         redirect_to edit_thought_path(@thought)
@@ -50,6 +54,7 @@ class ThoughtsController < ApplicationController
   end
 
   def edit
+    @thought.build_link if @thought.link == nil
   end
 
   def trash
@@ -124,6 +129,16 @@ class ThoughtsController < ApplicationController
 
   def thought_params
     params.require(:thought).permit!
+  end
+
+  def check_link
+    if params[:thought][:link_attributes] != nil
+      link = params[:thought][:link_attributes][:url]
+      if Link.exists?( :url => link )
+        @thought.link = nil
+        @thought.link = Link.find_by(url: link)
+      end
+    end
   end
 
 end

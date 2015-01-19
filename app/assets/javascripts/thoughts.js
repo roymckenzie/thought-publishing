@@ -18,3 +18,60 @@ $(document).on("change", ".upload-image-field", function () {
 window.setTimeout(function () {
   $(".alert-box a.close").trigger("click.fndtn.alert")
 }, 4000)
+
+$(document).on("change", ".kind-field", function () {
+  setupThought($(event.target).val());
+})
+
+var thought
+
+$(document).ready(function () {
+
+  thought = {
+    titleField:     $('#thought_title'),
+    summaryField:   $('#thought_summary'),
+    bodyField:      $('#thought_body'),
+    linkField:      $('#thought_link_attributes_url'),
+    kindField:      $('#thought_kind')
+  }
+
+  if (thought.kindField != null) {
+    setupThought(thought.kindField.val())    
+  }
+
+})
+
+function setupThought(kind) {
+  switch(kind) {
+    case "text": 
+      setupTextThought()
+      break
+    case "photo":
+      setupPhotoThought()
+      break
+    case "link":
+      setupLinkThought()
+      break
+  }
+}
+
+function setupTextThought() {
+  thought.titleField.show()
+  thought.summaryField.show()
+  thought.linkField.hide()
+}
+
+function setupPhotoThought() {
+  thought.titleField.show()
+  thought.summaryField.show()
+  thought.linkField.hide()
+}
+
+function setupLinkThought() {
+  thought.titleField.hide()
+  thought.summaryField.hide()
+  thought.linkField.show()
+}
+
+
+

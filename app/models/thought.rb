@@ -4,6 +4,7 @@ class Thought < ActiveRecord::Base
   has_attached_file :image, :styles => { :large => "640x480#", :medium => "480x360#", :thumb => "100x75#" }
   friendly_id :slug_candidates, use: :slugged
   belongs_to :link
+  accepts_nested_attributes_for :link
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   process_in_background :image, processing_image_url: :process_image

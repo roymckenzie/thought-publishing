@@ -1,4 +1,4 @@
-<%= form_for(@thought, :html => {:multipart => true}) do |f| %>
+<%= form_for(@thought) do |f| %>
 <%= f.hidden_field :id %>
 <% if @thought.image? %>
   <%= hidden_field_tag :image_url, @thought.image.url(:large) %>
@@ -12,7 +12,14 @@
   <div class="small-12 medium-4 columns">
     <div class="row">
       <div class="small-12 columns">
-        <%= f.select :kind, Thought.kinds.keys.map { |kind| [ kind.titleize, kind ] } %>
+        <%= f.select :kind, Thought.kinds.keys.map { |kind| [ kind.titleize, kind ] }, {}, class: "kind-field" %>
+        <% if @thought.link.url? %>
+          <p><%= @thought.link.inspect %></p>
+        <% else %>
+          <%= f.fields_for :link do |link| %>
+            <%= link.text_field :url, Placeholder: "http://" %>
+          <% end %>
+        <% end %>
       </div>
       <div class="small-6 columns">
         <% if @thought.trash == false %>
