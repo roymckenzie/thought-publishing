@@ -1,6 +1,6 @@
 class ThoughtsController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
-  before_action :get_thought, only: [:edit, :show, :destroy, :unpublish, :publish, :trash, :restore]
+  before_action :get_thought, only: [:edit, :show, :destroy, :unpublish, :publish, :trash, :restore, :detach_link]
 
   def index
     @thoughts = Thought.search(params[:trash])
@@ -36,6 +36,7 @@ class ThoughtsController < ApplicationController
   def update
     if params[:preview]
       @thought = Thought.new(thought_params)
+      @thought.link = Link.find_by(id: Thought.friendly.find(params[:id]).link)
       render action: 'edit'
     else
       @thought = Thought.friendly.find(params[:id])
@@ -97,6 +98,19 @@ class ThoughtsController < ApplicationController
       flash[:warning] = "There was a problem, please try again."
       render action: 'index'
     end
+  end
+
+  def detach_link
+    @thought.link = nil
+
+    if @thought.save
+      # flash[:success] = "Thought was successfully restored."
+      redirect_to edit_thought_path(@thought)
+    else
+      # flash[:warning] = "There was a problem, please try again."
+      render action: 'edit'
+    end
+
   end
 
   def publish

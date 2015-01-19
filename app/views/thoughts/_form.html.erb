@@ -13,13 +13,6 @@
     <div class="row">
       <div class="small-12 columns">
         <%= f.select :kind, Thought.kinds.keys.map { |kind| [ kind.titleize, kind ] }, {}, class: "kind-field" %>
-        <% if @thought.link.url? %>
-          <p><%= @thought.link.inspect %></p>
-        <% else %>
-          <%= f.fields_for :link do |link| %>
-            <%= link.text_field :url, Placeholder: "http://" %>
-          <% end %>
-        <% end %>
       </div>
       <div class="small-6 columns">
         <% if @thought.trash == false %>
@@ -46,13 +39,30 @@
         <% end %>
       </div>
     </div>
-    <%= f.label :published, 'Featured image' %>
-    <div class="panel">
-      <%= @thought.image? ? image_tag(@thought.image.url(:medium)) : "" %>
-      <a href="#" class="upload-image-button button tiny expand"><%= @thought.image? ? "Replace image" : "Add image" %></a>
-      <%= f.file_field :image, class: "upload-image-field" %>
-      <%= f.text_field :image_attribution, placeholder: "Image attribution" %>
+    <div id="featured-image-area">
+      <%= f.label :published, 'Featured image' %>
+      <div class="panel">
+        <%= @thought.image? ? image_tag(@thought.image.url(:medium)) : "" %>
+        <a href="#" class="upload-image-button button tiny expand"><%= @thought.image? ? "Replace image" : "Add image" %></a>
+        <%= f.file_field :image, class: "upload-image-field" %>
+        <%= f.text_field :image_attribution, placeholder: "Image attribution" %>
+      </div>
     </div>
+    <% if @thought.link.url? %>
+    <div class="panel link-panel">
+      <div class="link-image" style="background-image: url(<%= @thought.link.image.url %>)">
+      </div>
+      <div class="link-body">
+        <%= link_to("<i class=\"fi-x\"></i>".html_safe, detach_link_thought_path(@thought), data: { :confirm => "Remove link from post?" }, method: :patch, class: 'right delete-link') %>
+        <h6 class="link-title"><%= link_to(@thought.link.title, @thought.link.url, target: "_blank") %></h6>
+        <p class="link-summary"><%= @thought.link.descr %></p>
+      </div>
+    </div>
+     <% else %>
+      <%= f.fields_for :link do |link| %>
+        <%= link.text_field :url, Placeholder: "http://" %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 <% end %>

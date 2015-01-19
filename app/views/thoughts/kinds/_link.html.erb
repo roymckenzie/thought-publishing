@@ -1,0 +1,21 @@
+    <article class="h-entry link-thought">
+      <span class="label secondary thought-kind"><i class="fi-link"></i>&nbsp;&nbsp;Link</span>
+      <header>
+        <% if @thought.link? %>
+          <div class="panel link-panel">
+            <% if @thought.link.image? %>
+              <div class="link-image" style="background-image: url(<%= @thought.link.image.url %>)"></div>
+            <% end %>
+            <div class="link-body">
+              <h3 class="link-title"><%= link_to(@thought.link.title, @thought.link.url, target: "_blank") %></h3>
+              <p class="link-summary"><%= @thought.link.descr %></p>
+            </div>
+          </div>
+        <% end %>
+        <h1 class="p-name"><%= @thought.title%></h1>
+        <p class="byline">Added by <span class="p-author h-card">Roy McKenzie</span> <time class="dt-published" datetime="<%= @thought.published %>" title="<%= pretty_publish_date_time(@thought.published) %>"><%= @thought.published? ? time_ago_in_words(@thought.published) + " ago" : "not yet publised" %> </time></p>
+      </header>
+      <div class="e-content">
+        <%= simple_format(@thought.body, {}, sanitize: false) %>
+      </div>
+    </article>

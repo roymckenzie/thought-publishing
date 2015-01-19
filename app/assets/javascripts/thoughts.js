@@ -28,6 +28,7 @@ var thought
 $(document).ready(function () {
 
   thought = {
+    imageArea:      $('#featured-image-area'), 
     titleField:     $('#thought_title'),
     summaryField:   $('#thought_summary'),
     bodyField:      $('#thought_body'),
@@ -43,8 +44,8 @@ $(document).ready(function () {
 
 function setupThought(kind) {
   switch(kind) {
-    case "text": 
-      setupTextThought()
+    case "note": 
+      setupNoteThought()
       break
     case "photo":
       setupPhotoThought()
@@ -55,22 +56,25 @@ function setupThought(kind) {
   }
 }
 
-function setupTextThought() {
+function setupNoteThought() {
   thought.titleField.show()
   thought.summaryField.show()
   thought.linkField.hide()
+  thought.imageArea.show()
 }
 
 function setupPhotoThought() {
   thought.titleField.show()
   thought.summaryField.show()
   thought.linkField.hide()
+  thought.imageArea.show()
 }
 
 function setupLinkThought() {
-  thought.titleField.hide()
+  thought.titleField.show()
   thought.summaryField.hide()
   thought.linkField.show()
+  thought.imageArea.hide()
 }
 
 

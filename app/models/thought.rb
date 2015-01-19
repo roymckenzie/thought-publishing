@@ -1,6 +1,6 @@
 class Thought < ActiveRecord::Base
   extend FriendlyId
-  enum kind: [ :text, :photo, :link ]
+  enum kind: [ :note, :photo, :link ]
   has_attached_file :image, :styles => { :large => "640x480#", :medium => "480x360#", :thumb => "100x75#" }
   friendly_id :slug_candidates, use: :slugged
   belongs_to :link

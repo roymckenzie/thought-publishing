@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       patch :publish
       patch :trash
       patch :restore
+      patch :detach_link
     end
   end
   

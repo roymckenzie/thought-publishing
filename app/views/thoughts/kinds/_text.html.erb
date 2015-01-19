@@ -1,0 +1,24 @@
+    <article class="h-entry text-thought">
+      <span class="label secondary thought-kind"><i class="fi-page"></i>&nbsp;&nbsp;Note</span>
+      <header>
+        <h1 class="p-name"><%= @thought.title%></h1>
+        <% if @thought.summary? %>
+          <p class="p-summary"><%= @thought.summary %></p>
+        <% end %>
+        <p class="byline">Added by <span class="p-author h-card">Roy McKenzie</span> <time class="dt-published" datetime="<%= @thought.published %>" title="<%= pretty_publish_date_time(@thought.published) %>"><%= @thought.published? ? time_ago_in_words(@thought.published) + " ago" : "not yet publised" %> </time></p>
+        <% if @thought.image? %>
+          <figure class="entry-image u-featured">
+            <%= @thought.image? ? image_tag(@thought.image.url(:large)) : "" %>
+            <figcaption class="right"><%= @thought.image_attribution %></figcaption>
+          </figure>
+        <% elsif params[:image_url] %>
+          <figure class="entry-image u-featured">
+            <%= image_tag(params[:image_url]) %>
+            <figcaption class="right"><%= @thought.image_attribution %></figcaption>
+          </figure>
+        <% end %>
+      </header>
+      <div class="e-content">
+        <%= simple_format(@thought.body, {}, sanitize: false) %>
+      </div>
+    </article>

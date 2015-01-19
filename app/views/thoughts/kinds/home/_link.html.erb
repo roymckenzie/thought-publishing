@@ -1,0 +1,15 @@
+        <article class="thought home-link-thought">
+          <div class="panel link-panel">
+            <span class="label secondary right thought-kind"><i class="fi-link"></i>&nbsp;&nbsp;Link</span>
+            <div class="link-image" style="background-image: url(<%= thought.link.image.url %>)">
+            </div>
+            <div class="link-body">
+              <h6 class="link-title"><%= link_to(thought.link.title, thought.link.url, target: "_blank") %></h6>
+              <p class="link-summary"><%= thought.link.descr %></p>
+            </div>
+          </div>
+          <div class="panel">
+            <h4 class="p-name"><%= link_to thought.title, thought %></h4>
+            <p><time class="dt-published thought-published" datetime="<%= pretty_publish_date_time(thought.published) %>" title="<%= pretty_publish_date_time(thought.published) %>"><%= time_ago_in_words(thought.published) %> ago</time><%= link_to("Read more", thought, class: 'right read-more') %></p>
+          </div>
+        </article>

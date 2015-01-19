@@ -3,14 +3,7 @@
     <ul class="thoughts small-block-grid-1 medium-block-grid-2 large-block-grid-3">
       <% @thoughts.each do |thought| %>
       <li>
-        <article class="thought">
-          <%= thought.image? ? link_to(image_tag(thought.image.url(:medium)), thought) : "" %>
-          <div class="panel">
-            <h4 class="p-name"><%= link_to thought.title, thought %></h4>
-            <% if thought.summary? %><p class="p-summary"><%= thought.summary %></p><% end %>
-            <p><time class="dt-published thought-published" datetime="<%= pretty_publish_date_time(thought.published) %>" title="<%= pretty_publish_date_time(thought.published) %>"><%= time_ago_in_words(thought.published) %> ago</time><%= link_to("Read more", thought, class: 'right read-more') %></p>
-          </div>
-        </article>
+        <%= get_thought_home_content(thought) %>
       </li>
       <% end %>
     </ul>

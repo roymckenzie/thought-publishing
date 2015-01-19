@@ -179,8 +179,83 @@ table .button {
 }
 
 /* Thoughts Show Page End   */
+.article-rule {
+  margin-bottom: 0;
+}
+/* Link Post Type Start */
+
+.link-thought, .thoughts-new, .thoughts-edit, .home-show {
+
+  .link-panel {
+    padding: 0;
+    width: 100%;
+  }
+
+  .link-body {
+    display: table-cell;
+    padding: 1.25rem;
+
+    p {
+      font-family: $font-family-serif;
+      margin-bottom: 0;
+    }
+  }
+
+  .link-image {
+    background-position: center center;
+    background-size: cover;
+    display: table-cell;
+    height: 100%;
+    width: 40%;
+  }
+
+  .link-title a {
+    font-family: "Open Sans Condensed", sans-serif;
+    font-weight: 700;
+  }
+}
+
+.thoughts-new, .thoughts-edit, .home-show {
+
+  .link-image {
+    width: 30%;
+  }
+
+  .link-body {
+    padding: 0.4rem 0.6rem 0.6rem 0.6rem;
+
+    p {
+      font-size: 0.7rem;
+    }
+  }
+
+  .delete-link {
+    font-size: 0.5rem;
+    margin-top: -0.1rem;
+  }
+}
 
 
+.home-show {
+
+  .link-panel {
+    background: #fff;
+    border-bottom: 0;
+    border-top: 1px solid #d8d8d8;
+    margin-bottom: 0;
+  }
+}
+
+.home-text-thought {
+  position: relative;
+
+  .thought-kind {
+    position: absolute;
+    right: 0;
+  }
+}
+
+/* Link Post Type End */
 
 
 

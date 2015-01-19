@@ -18,6 +18,28 @@ module ThoughtsHelper
     end
   end
 
+  def get_thought_content(kind)
+    case(kind)
+    when "note"
+      render "thoughts/kinds/text"
+    when "link"
+      render "thoughts/kinds/link"
+    else
+      return
+    end
+  end
+
+  def get_thought_home_content(thought)
+    case(thought.kind)
+    when "note"
+      render "thoughts/kinds/home/text", :thought => thought
+    when "link"
+      render "thoughts/kinds/home/link", :thought => thought
+    else
+      return
+    end
+  end
+
   def publish_button(thought)
     if thought.id != nil
       if thought.published == nil
