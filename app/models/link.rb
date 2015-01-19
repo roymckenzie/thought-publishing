@@ -10,14 +10,21 @@ class Link < ActiveRecord::Base
       
       og = OpenGraph.new(self.url)
 
-      self.canonical_url  = og.url
-      self.title          = og.title
-      self.descr          = og.description
+      self.canonical_url = og.url
 
-      if og.images.any?
-        self.image        = open(og.images[0])
+      if self.title == nil
+        self.title = og.title
       end
 
+      if self.descr == nil
+        self.descr = og.description
+      end
+
+      if self.image == nil
+        if og.images.any?
+          self.image = open(og.images[0])
+        end
+      end
     end
   end
 end

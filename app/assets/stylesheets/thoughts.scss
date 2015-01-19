@@ -249,6 +249,10 @@ table .button {
 .home-text-thought, .home-link-thought {
   position: relative;
 
+  .panel {
+    margin-bottom: 0;
+  }
+
   &:hover {
 
     .thought-kind {
