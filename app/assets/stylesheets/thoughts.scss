@@ -246,12 +246,25 @@ table .button {
   }
 }
 
-.home-text-thought {
+.home-text-thought, .home-link-thought {
   position: relative;
 
+  &:hover {
+
+    .thought-kind {
+      opacity: 1;
+    }
+  }
+
   .thought-kind {
+    opacity: 0.2;
     position: absolute;
     right: 0;
+    transition: 0.2s;
+  }
+
+  .link-title {
+    padding-right: 1rem;
   }
 }
 
